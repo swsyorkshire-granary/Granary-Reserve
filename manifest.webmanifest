@@ -1,0 +1,10 @@
+{
+  "name": "Granary Reserve",
+  "short_name": "Granary Reserve",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6efe5",
+  "theme_color": "#7b2435",
+  "orientation": "portrait-primary",
+  "description": "Personal wine cellar and collection manager"
+}
