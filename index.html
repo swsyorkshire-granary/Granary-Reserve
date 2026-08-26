@@ -99,12 +99,12 @@ let editingId=null,photoData='';
 
 function loadData(){
   try{
-    const saved=window.localStorage && localStorage.getItem('myCellarV7');
+    const saved=window.localStorage && localStorage.getItem('myCellarV8');
     wines=saved?JSON.parse(saved):SEED;
   }catch(e){ wines=SEED.slice(); }
 }
 function persist(){
-  try{ if(window.localStorage) localStorage.setItem('myCellarV7',JSON.stringify(wines)); }catch(e){}
+  try{ if(window.localStorage) localStorage.setItem('myCellarV8',JSON.stringify(wines)); }catch(e){}
 }
 function setv(id,x){$(id).textContent=x}
 function stats(){
