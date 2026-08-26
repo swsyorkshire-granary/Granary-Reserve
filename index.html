@@ -99,9 +99,18 @@ let editingId=null,photoData='';
 
 function loadData(){
   try{
-    const saved=window.localStorage && localStorage.getItem('myCellarV8');
-    wines=saved?JSON.parse(saved):SEED;
-  }catch(e){ wines=SEED.slice(); }
+    const saved=window.localStorage && localStorage.getItem('myCellarV7');
+    if(saved){
+      const parsed=JSON.parse(saved);
+      wines=Array.isArray(parsed) && parsed.length ? parsed : SEED.slice();
+    }else{
+      wines=SEED.slice();
+    }
+    persist();
+  }catch(e){
+    wines=SEED.slice();
+    persist();
+  }
 }
 function persist(){
   try{ if(window.localStorage) localStorage.setItem('myCellarV8',JSON.stringify(wines)); }catch(e){}
