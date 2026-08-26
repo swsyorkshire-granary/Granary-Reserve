@@ -227,7 +227,17 @@ function saveWine(){
   persist();closeAdd();stats();renderHome();show('collection');if(editingId)openWine(w.id);
 }
 function duplicateWine(id){const w=wines.find(x=>String(x.id)===String(id));if(!w)return;const copy={...w,id:Date.now()};wines.push(copy);persist();stats();renderHome();openWine(copy.id)}
-function deleteWine(id){if(!confirm('Delete this wine entry?'))return;wines=wines.filter(x=>String(x.id)!==String(id));persist();stats();renderHome();show('collection')}
+  function deleteWine(id){if(!confirm('Delete this wine entry?'))return;wines=wines.filter(x=>String(x.id)!==String(id));persist();stats();renderHome();show('collection')}
+function exportCellar(){
+  const data=JSON.stringify(wines,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='granary-cellar.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 $('search').addEventListener('input',renderCollection);
 $('fp').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{photoData=r.result;$('preview').src=photoData;$('preview').style.display='block'};r.readAsDataURL(f)});
 document.addEventListener('click',e=>{
