@@ -126,7 +126,26 @@ function stats(){
   setv('qtop',money(Math.max(0,...wines.map(w=>Number(w.cost||0)))));
 }
 function bottleArt(){return '<div class="bottle muga-bottle"><div class="neck"></div><div class="body"></div><div class="blabel">MUGA<br><small>RIOJA</small></div></div>'}
-function wineCard(w){return '<button class="wine" data-wine="'+w.id+'"><div class="photo">'+(w.photo?'<img src="'+w.photo+'">':bottleArt())+'</div><div class="wi" style="text-align:left"><b>'+esc(w.name)+'</b><div class="meta">'+esc(w.year)+' • '+esc(w.type)+'<br>'+esc(w.country)+' • '+w.quantity+' bottle'+(w.quantity==1?'':'s')+'</div><div class="price">'+money(w.cost)+' / bottle</div></div></button>'}
+function wineCard(w){
+  const gain=w.value!=null?(Number(w.value)-Number(w.cost))*Number(w.quantity||0):null;
+  const rating=Number(w.rating)>0?stars(Number(w.rating)):'';
+  return '<button class="wine" data-wine="'+w.id+'">'+
+    '<div class="photo">'+(w.photo?'<img src="'+w.photo+'">':bottleArt())+'</div>'+
+    '<div class="wi" style="text-align:left">'+
+      '<b>'+esc(w.name)+'</b>'+
+      '<div class="meta">'+esc(w.year)+' · '+esc(w.type)+'<br>'+
+        esc(w.country)+' · '+w.quantity+' bottle'+(w.quantity==1?'':'s')+
+      '</div>'+
+      (rating?'<div class="rating" style="font-size:16px;letter-spacing:1px;margin:5px 0">'+rating+'</div>':'')+
+      '<div class="price">'+money(w.cost)+' / bottle'+
+        (w.value!=null?' · '+money(w.value)+' now':'')+
+      '</div>'+
+      (gain!=null?'<div class="'+(gain>=0?'pos':'neg')+'" style="font-size:12px;font-weight:900;margin-top:4px">'+
+        (gain>=0?'+':'')+money(gain)+' gain'+
+      '</div>':'')+
+    '</div>'+
+  '</button>';
+}
 function renderHome(){
   const arr=[...wines].sort((a,b)=>Number(b.cost)-Number(a.cost)),w=arr[0];
   $('spotlight').innerHTML=w?'<div class="spot"><div class="spotrow"><div><span class="badge">Cellar spotlight</span><h2 style="margin-top:9px">'+esc(w.name)+'</h2><div class="muted">'+esc(w.year)+' · '+esc(w.country)+' · '+esc(w.type)+'</div></div>'+bottleArt()+'</div><div class="kpis"><div class="kpi"><div class="label">Bottles</div><div class="num">'+w.quantity+'</div></div><div class="kpi"><div class="label">Spend / bottle</div><div class="num">'+money(w.cost)+'</div></div></div><button class="primary" data-wine="'+w.id+'">Open bottle →</button></div>':'<div class="empty">Your cellar is empty.</div>';
