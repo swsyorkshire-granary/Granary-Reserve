@@ -136,9 +136,9 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 
 <div id="modal" class="modal"><div class="sheet"><button class="close" data-action="close-add">×</button><h2 id="modalTitle">Add wine</h2>
 
-<div class="formgrid">
+<div class="formgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:0 14px;">
 
-<label class="full">Name
+<label class="full" style="grid-column:1 / -1;">Name
 <input id="fn"></label>
 
 <label>Quantity
@@ -174,7 +174,7 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 <label>Cellar location
 <input id="fl"></label>
 
-<label class="full">Notes
+<label class="full" style="grid-column:1 / -1;">Notes
 <textarea id="fnotes"></textarea></label>
 
 </div>
