@@ -53,12 +53,17 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 }
 
 .formgrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0 12px;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:0 14px;
 }
 
-.formgrid .full{
+.formgrid > label{
+  display:block;
+  min-width:0;
+}
+
+.formgrid > .full{
   grid-column:1 / -1;
 }
 
