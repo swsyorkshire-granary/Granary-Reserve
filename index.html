@@ -44,7 +44,38 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 .search{width:100%;padding:14px;border:1px solid var(--line);border-radius:15px;background:white;font-size:16px;margin-bottom:12px}button{font:inherit;cursor:pointer;border:0}.primary{background:linear-gradient(135deg,var(--wine2),var(--wine));color:#fff;padding:13px 16px;border-radius:14px;font-weight:900}.secondary{background:#efdfcf;color:var(--wine);padding:12px 15px;border-radius:14px;font-weight:900}.iconbtn{width:42px;height:42px;border-radius:50%;background:#efdfcf;color:var(--wine);font-size:20px}
 .bottlehero{text-align:center;background:linear-gradient(145deg,#fffaf2,#edd8c5);border-radius:27px;padding:19px;border:1px solid #fff;box-shadow:0 7px 22px #60452e18}.bottlehero .photo{height:280px;border-radius:19px;margin-bottom:12px}.bottlehero .photo img{border-radius:19px}.rating{color:#d29c29;font-size:22px;letter-spacing:2px;margin:8px}.info{background:#fff;border-radius:20px;padding:16px;margin-top:13px}.inforow{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line);padding:12px 0}.inforow:last-child{border:0}.inforow b{color:var(--wine);text-align:right}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fffdf9ee;backdrop-filter:blur(18px);border-top:1px solid var(--line)}.navin{max-width:920px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}.nav button{background:none;color:#897b73;padding:10px 3px;font-size:10px}.nav button.active{color:var(--wine);font-weight:900}.nav span{display:block;font-size:21px}
-.modal{display:none;position:fixed;inset:0;background:#33241d88;z-index:30;align-items:flex-end}.modal.open{display:flex}.sheet{width:100%;max-height:94vh;overflow:auto;background:var(--bg);border-radius:27px 27px 0 0;padding:21px}.sheet input,.sheet textarea{display:block;width:100%;padding:13px;margin:5px 0 11px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}.sheet textarea{min-height:80px}.camera{display:block;border:2px dashed var(--gold);border-radius:17px;padding:20px;text-align:center;color:var(--wine);font-weight:900}.camera input{display:none}.camera img{max-width:100%;max-height:180px;border-radius:12px;margin-top:9px}.close{float:right;background:none;color:var(--wine);font-size:28px}
+.modal{display:none;position:fixed;inset:0;background:#33241d88;z-index:30;align-items:flex-end}.modal.open{display:flex}.sheet{width:100%;max-height:94vh;overflow:auto;background:var(--bg);border-radius:27px 27px 0 0;padding:21px}.sheet input,.sheet textarea{display:block;width:100%;padding:13px;margin:5px 0 11px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}.sheet label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.formgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 12px;
+}
+
+.formgrid .full{
+  grid-column:1 / -1;
+}
+
+.sheet input,.sheet textarea{
+  box-sizing:border-box;
+}
+
+.sheet .camera{
+  margin-top:8px;
+}
+
+@media(max-width:480px){
+  .sheet{
+    padding:17px;
+  }
+}
+                                                                                                                                                                                                                                                              .sheet textarea{min-height:80px}.camera{display:block;border:2px dashed var(--gold);border-radius:17px;padding:20px;text-align:center;color:var(--wine);font-weight:900}.camera input{display:none}.camera img{max-width:100%;max-height:180px;border-radius:12px;margin-top:9px}.close{float:right;background:none;color:var(--wine);font-size:28px}
 .empty{background:#fff;border-radius:17px;padding:25px;text-align:center;color:var(--muted)}
 .pos{color:#3a8f5a}.neg{color:var(--wine)}
 .dw-badge{display:inline-block;padding:5px 11px;border-radius:99px;font-size:11px;font-weight:900;text-transform:uppercase;margin-right:8px;white-space:nowrap}
@@ -86,10 +117,60 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 </div>
 
 <div id="modal" class="modal"><div class="sheet"><button class="close" data-action="close-add">×</button><h2 id="modalTitle">Add wine</h2>
-<label>Name<input id="fn"></label><label>Quantity<input id="fq" type="number" min="1" value="1"></label><label>Year<input id="fy"></label><label>Type<input id="ft"></label><label>Country<input id="fc"></label><label>Purchased from<input id="ff"></label><label>Cost per bottle<input id="fco" type="number" step=".01"></label><label>Current value per bottle<input id="fv" type="number" step=".01" placeholder="Optional"></label><label>Rating (1–5)<input id="fr" type="number" min="1" max="5" step=".5"></label><label>Drink from<input id="fdf"></label><label>Drink until<input id="fdt"></label><label>Cellar location<input id="fl"></label><label>Notes<textarea id="fnotes"></textarea></label>
-<label class="camera">📷 TAKE / UPLOAD BOTTLE PHOTO<input id="fp" type="file" accept="image/*"><img id="preview" style="display:none"></label>
-<div class="actions"><button class="secondary" data-action="close-add">Cancel</button><button class="primary" data-action="save">Save wine</button></div>
-</div></div>
+
+<div class="formgrid">
+
+<label class="full">Name
+<input id="fn"></label>
+
+<label>Quantity
+<input id="fq" type="number" min="1" value="1"></label>
+
+<label>Year
+<input id="fy"></label>
+
+<label>Type
+<input id="ft"></label>
+
+<label>Country
+<input id="fc"></label>
+
+<label>Purchased from
+<input id="ff"></label>
+
+<label>Cost per bottle
+<input id="fco" type="number" step=".01"></label>
+
+<label>Current value per bottle
+<input id="fv" type="number" step=".01" placeholder="Optional"></label>
+
+<label>Rating (1–5)
+<input id="fr" type="number" min="1" max="5" step=".5"></label>
+
+<label>Drink from
+<input id="fdf"></label>
+
+<label>Drink until
+<input id="fdt"></label>
+
+<label>Cellar location
+<input id="fl"></label>
+
+<label class="full">Notes
+<textarea id="fnotes"></textarea></label>
+
+</div>
+
+<label class="camera">
+📷 TAKE / UPLOAD BOTTLE PHOTO
+<input id="fp" type="file" accept="image/*">
+<img id="preview" style="display:none">
+</label>
+
+<div class="actions">
+<button class="secondary" data-action="close-add">Cancel</button>
+<button class="primary" data-action="save">Save wine</button>
+</div>
 
 <script>
 const SEED=[{"id":1,"name":"Pomal Reserva","quantity":1,"year":"2019","type":"Reserva Rioja","country":"Spain","from":"","cost":27,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":2,"name":"Muga Selección Especial","quantity":1,"year":"2021","type":"Gran Reserva Rioja","country":"Spain","from":"","cost":25,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":3,"name":"Mazzei Concerto di Fonterutoli","quantity":1,"year":"2020","type":"Super Tuscan","country":"Italy","from":"","cost":30,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":4,"name":"Othello","quantity":1,"year":"2019","type":"Cabernet Sauvignon","country":"USA","from":"","cost":35,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":5,"name":"Louis M. Martini Cabernet Sauvignon","quantity":1,"year":"2022","type":"Cabernet Sauvignon","country":"USA","from":"","cost":25,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":6,"name":"Quinta do Vesuvio","quantity":1,"year":"2020","type":"Douro","country":"Portugal","from":"","cost":50,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""},{"id":7,"name":"Grasà Contrada Etna Rosso","quantity":1,"year":"2022","type":"Etna Rosso","country":"Italy","from":"","cost":50,"value":null,"photo":"","rating":null,"drinkFrom":"","drinkTo":"","location":"","notes":""}];
