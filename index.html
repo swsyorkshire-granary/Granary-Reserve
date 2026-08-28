@@ -44,7 +44,20 @@ header{padding:27px 19px 22px;color:white;background:linear-gradient(135deg,var(
 .search{width:100%;padding:14px;border:1px solid var(--line);border-radius:15px;background:white;font-size:16px;margin-bottom:12px}button{font:inherit;cursor:pointer;border:0}.primary{background:linear-gradient(135deg,var(--wine2),var(--wine));color:#fff;padding:13px 16px;border-radius:14px;font-weight:900}.secondary{background:#efdfcf;color:var(--wine);padding:12px 15px;border-radius:14px;font-weight:900}.iconbtn{width:42px;height:42px;border-radius:50%;background:#efdfcf;color:var(--wine);font-size:20px}
 .bottlehero{text-align:center;background:linear-gradient(145deg,#fffaf2,#edd8c5);border-radius:27px;padding:19px;border:1px solid #fff;box-shadow:0 7px 22px #60452e18}.bottlehero .photo{height:280px;border-radius:19px;margin-bottom:12px}.bottlehero .photo img{border-radius:19px}.rating{color:#d29c29;font-size:22px;letter-spacing:2px;margin:8px}.info{background:#fff;border-radius:20px;padding:16px;margin-top:13px}.inforow{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line);padding:12px 0}.inforow:last-child{border:0}.inforow b{color:var(--wine);text-align:right}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fffdf9ee;backdrop-filter:blur(18px);border-top:1px solid var(--line)}.navin{max-width:920px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}.nav button{background:none;color:#897b73;padding:10px 3px;font-size:10px}.nav button.active{color:var(--wine);font-weight:900}.nav span{display:block;font-size:21px}
-.modal{display:none;position:fixed;inset:0;background:#33241d88;z-index:30;align-items:flex-end}.modal.open{display:flex}.sheet{width:100%;max-height:94vh;overflow:auto;background:var(--bg);border-radius:27px 27px 0 0;padding:21px}.sheet input,.sheet textarea{display:block;width:100%;padding:13px;margin:5px 0 11px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}.sheet label{
+.modal{display:none;position:fixed;inset:0;background:#33241d88;z-index:30;align-items:flex-end}.modal.open{display:flex}.sheet{width:100%;max-height:94vh;overflow:auto;background:var(--bg);border-radius:27px 27px 0 0;padding:21px}.sheet input,.sheet textarea{display:block;width:100%;padding:13px;margin:5px 0 11px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}.formgrid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:0 14px;
+}
+
+.formgrid > label{
+  display:block;
+  min-width:0;
+}
+
+.formgrid > .full{
+  grid-column:1 / -1;
+}.sheet label{
   display:block;
   font-size:12px;
   font-weight:800;
